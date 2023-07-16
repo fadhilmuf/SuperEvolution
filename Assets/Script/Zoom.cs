@@ -13,13 +13,14 @@ public class Zoom : MonoBehaviour
 
     void Update()
     {
-        if(coll.score == 150f)
+        float zoomcam = Input.GetAxis("Mouse ScrollWheel");
+        if (zoomcam < 0)
         {
-            virtualCamera.m_Lens.FieldOfView += 30f * Time.deltaTime;
+            virtualCamera.m_Lens.FieldOfView += 100f * Time.deltaTime;
         }
-        if(coll.score == 200f)
+        if (zoomcam > 0)
         {
-            virtualCamera.m_Lens.FieldOfView += 50f * Time.deltaTime;
+            virtualCamera.m_Lens.FieldOfView -= 100f * Time.deltaTime;
         }
     }
 }
