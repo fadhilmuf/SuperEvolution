@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class ColliderHandler : MonoBehaviour
 {
-    float score;
+    public float score;
     public Text EvoScore;
     public Movement movement;
+    public GameObject cam;
     
     void Update()
     {
@@ -19,10 +20,13 @@ public class ColliderHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Point":
-                transform.localScale *= 1.01f;
                 point.SetActive(false);
                 score++;
                 Debug.Log(score);
+                if (score < 210f)
+                {
+                    transform.localScale *= 1.01f;
+                }
             break;
             case "Speed":
                 movement.speed *= 1.2f;
