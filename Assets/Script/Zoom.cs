@@ -16,11 +16,11 @@ public class Zoom : MonoBehaviour
         float zoomcam = Input.GetAxis("Mouse ScrollWheel");
         if (zoomcam < 0)
         {
-            virtualCamera.m_Lens.FieldOfView += 100f * Time.deltaTime;
+            virtualCamera.m_Lens.FieldOfView += 400f * Time.deltaTime;
         }
         if (zoomcam > 0)
         {
-            virtualCamera.m_Lens.FieldOfView -= 100f * Time.deltaTime;
+            virtualCamera.m_Lens.FieldOfView -= 400f * Time.deltaTime;
         }
     }
 }

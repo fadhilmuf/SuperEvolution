@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Point
   - Speed
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,6 @@ public class ColliderHandler : MonoBehaviour
     public float score;
     public Text EvoScore;
     public Movement movement;
-    public GameObject cam;
     
     void Update()
     {
