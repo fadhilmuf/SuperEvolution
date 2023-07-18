@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
     public NavMeshAgent agent;
 
+    public Text enemyScore;
     float scoreEnemy;
 
     void Update()
     {
+        enemyScore.text = scoreEnemy.ToString();
+        
         FindNearestPointObject();
 
         if(scoreEnemy < coll.score)
