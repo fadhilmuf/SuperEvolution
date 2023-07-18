@@ -1,16 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    public Camera cam;
+    public ColliderHandler coll;
     public NavMeshAgent agent;
 
-    float score;
+    float scoreEnemy;
 
     void Update()
     {
         FindNearestPointObject();
+
+        if(scoreEnemy < coll.score)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void FindNearestPointObject()
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
             }
 
             agent.SetDestination(nearestObject.transform.position);
-            agent.speed = 5f; // Set the agent's speed to make it run
+            agent.speed = 2f; // Set the agent's speed to make it run
         }
     }
 
@@ -46,9 +51,9 @@ public class PlayerController : MonoBehaviour
         {
             case "Point":
                 point.SetActive(false);
-                score++;
-                Debug.Log(score);
-                if (score < 210f)
+                scoreEnemy++;
+                Debug.Log(scoreEnemy);
+                if (scoreEnemy < 210f)
                 {
                     transform.localScale *= 1.01f;
                 }
