@@ -8,18 +8,13 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent agent;
 
     public Text enemyScore;
-    float scoreEnemy;
+    public float scoreEnemy;
 
     void Update()
     {
         enemyScore.text = scoreEnemy.ToString();
         
         FindNearestPointObject();
-
-        if(scoreEnemy < coll.score)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     void FindNearestPointObject()
@@ -60,6 +55,24 @@ public class EnemyController : MonoBehaviour
                 if (scoreEnemy < 210f)
                 {
                     transform.localScale *= 1.01f;
+                }
+            break;
+        }
+    }
+    void OnCollisionEnter(Collision other) //when object collide to non trigger object
+    {
+        GameObject player = other.gameObject;
+
+        switch (other.gameObject.tag)
+        {
+            case "Player":
+                if(scoreEnemy<coll.score)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(player);
                 }
             break;
         }

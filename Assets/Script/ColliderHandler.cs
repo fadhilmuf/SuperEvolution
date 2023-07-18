@@ -6,6 +6,10 @@ public class ColliderHandler : MonoBehaviour
     public float score;
     public Text EvoScore;
     public Movement movement;
+
+    public Canvas failedCanvas;
+
+    public EnemyController enemy;
     
     void Update()
     {
@@ -31,6 +35,25 @@ public class ColliderHandler : MonoBehaviour
                 movement.speed *= 1.2f;
                 Destroy(point);
                 Debug.Log(movement.speed);
+            break;
+        }
+    }
+    void OnCollisionEnter(Collision other) //when object collide to non trigger object
+    {
+        GameObject enem = other.gameObject;
+
+        switch (other.gameObject.tag)
+        {
+            case "Enemy":
+                if(score<enemy.scoreEnemy)
+                {
+                    Destroy(gameObject);
+                    failedCanvas.enabled = true;
+                }
+                else
+                {
+                    Destroy(enem);
+                }
             break;
         }
     }
