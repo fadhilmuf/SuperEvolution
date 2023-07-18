@@ -19,7 +19,7 @@ public class ColliderHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Point":
-                point.SetActive(false);
+                Destroy(point);
                 score++;
                 Debug.Log(score);
                 if (score < 210f)
@@ -29,7 +29,7 @@ public class ColliderHandler : MonoBehaviour
             break;
             case "Speed":
                 movement.speed *= 1.2f;
-                point.SetActive(false);
+                Destroy(point);
                 Debug.Log(movement.speed);
             break;
         }

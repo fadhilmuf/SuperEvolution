@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Point":
-                point.SetActive(false);
+                Destroy(point);
                 scoreEnemy++;
                 Debug.Log(scoreEnemy);
                 if (scoreEnemy < 210f)
