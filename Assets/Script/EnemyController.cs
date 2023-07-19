@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
     public Text enemyScore;
     public float scoreEnemy;
 
+    public GameObject Player;
+
     void Update()
     {
         enemyScore.text = scoreEnemy.ToString();
@@ -20,9 +22,33 @@ public class EnemyController : MonoBehaviour
     void FindNearestPointObject()
     {
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("Point");
-
-        if (pointObjects.Length > 0)
+        
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        
+        if ((scoreEnemy > coll.score)&&(Player == true))
         {
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            GameObject nearestObject = playerObjects[0];
+            float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);
+
+            for (int i = 1; i < playerObjects.Length; i++)
+            {
+                float distance = Vector3.Distance(transform.position, pointObjects[i].transform.position);
+
+                if (distance < nearestDistance)
+                {
+                    nearestObject = playerObjects[i];
+                    nearestDistance = distance;
+                }
+            }
+
+            agent.SetDestination(nearestObject.transform.position);
+            agent.speed = 5f; // Set the agent's speed to make it run
+        }
+
+        else
+        {
+            GetComponent<MeshRenderer>().material.color = Color.white;
             GameObject nearestObject = pointObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);
 
@@ -55,24 +81,6 @@ public class EnemyController : MonoBehaviour
                 if (scoreEnemy < 210f)
                 {
                     transform.localScale *= 1.01f;
-                }
-            break;
-        }
-    }
-    void OnCollisionEnter(Collision other) //when object collide to non trigger object
-    {
-        GameObject player = other.gameObject;
-
-        switch (other.gameObject.tag)
-        {
-            case "Player":
-                if(scoreEnemy<coll.score)
-                {
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    Destroy(player);
                 }
             break;
         }
