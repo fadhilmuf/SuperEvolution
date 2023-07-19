@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
             }
 
             agent.SetDestination(nearestObject.transform.position);
-            agent.speed = 5f; // Set the agent's speed to make it run
+            agent.speed = 6f; // Set the agent's speed to make it run
         }
 
         else
