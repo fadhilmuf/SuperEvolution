@@ -2,14 +2,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawnerSpeed : MonoBehaviour
 {
     public GameObject objectToSpawn;
     public Terrain terrain;
     public int numberOfObjects = 10;
     public float respawnTime = 30f;
-
-    public Text enemyScore;
 
     float heightY = 0.2f;
 

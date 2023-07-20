@@ -5,6 +5,7 @@ public class ColliderHandler : MonoBehaviour
 {
     public float score;
     public Text EvoScore;
+    public Text HighScore;
     public Movement movement;
 
     public Canvas failedCanvas;
@@ -15,9 +16,14 @@ public class ColliderHandler : MonoBehaviour
     {
         //Evolution Score
         EvoScore.text = score.ToString();
+        HighScore.text = score.ToString();
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             score++;
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+                    transform.localScale *= 1.01f;
         }
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object
@@ -53,10 +59,6 @@ public class ColliderHandler : MonoBehaviour
                 {
                     Destroy(gameObject);
                     failedCanvas.enabled = true;
-                }
-                else if(score>enemy.scoreEnemy)
-                {
-                    Destroy(enem);
                 }
             break;
         }
