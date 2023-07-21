@@ -3,9 +3,12 @@ using UnityEngine.UI;
 
 public class ColliderHandler : MonoBehaviour
 {
+    public float coin;
+    public ParticleSystem coinParticle;
     public float score;
     public Text EvoScore;
     public Text HighScore;
+    public Text coinText;
     public Movement movement;
 
     public Canvas failedCanvas;
@@ -13,16 +16,17 @@ public class ColliderHandler : MonoBehaviour
     public EnemyController enemy;
 
     public Slider expSlider;
-    private const string ScoreKey = "PlayerScore";
+    private const string CoinKey = "Coins";
 
     void Start()
     {
-        score = PlayerPrefs.GetFloat(ScoreKey, 0f);
+        coin = PlayerPrefs.GetFloat(CoinKey, 0f);
     }
     
     void Update()
     {
         //Evolution Score
+        coinText.text = coin.ToString();
         EvoScore.text = score.ToString();
         HighScore.text = score.ToString();
 
@@ -55,6 +59,10 @@ public class ColliderHandler : MonoBehaviour
                 Destroy(point);
                 Debug.Log(movement.speed);
             break;
+            case "Coin":
+                coin++;
+                Destroy(point);
+            break;
         }
     }
     void OnCollisionEnter(Collision other) //when object collide to non trigger object
@@ -75,7 +83,7 @@ public class ColliderHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat(ScoreKey, score);
+        PlayerPrefs.SetFloat(CoinKey, coin);
         PlayerPrefs.Save();
     }
 }
