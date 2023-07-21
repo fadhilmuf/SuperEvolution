@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         GameObject[] speedObjects = GameObject.FindGameObjectsWithTag("Speed");
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         
-        if ((scoreEnemy > coll.score)&&(Player == true))
+        if ((scoreEnemy > coll.score)&&(Player != null))
         {
             audioSource.Play();
             GetComponent<MeshRenderer>().material.color = Color.red;

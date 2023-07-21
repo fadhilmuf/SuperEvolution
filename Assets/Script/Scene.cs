@@ -12,6 +12,14 @@ public class Scene : MonoBehaviour
         tryAgainButton.onClick.AddListener(ReloadLevel);
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ReloadLevel();
+        }
+    }
+
     void ReloadLevel()
     {
         SceneManager.LoadScene("Main");

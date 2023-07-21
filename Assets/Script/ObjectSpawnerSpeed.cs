@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawnerSpeed : MonoBehaviour
 {
     public GameObject objectToSpawn;
     public Terrain terrain;

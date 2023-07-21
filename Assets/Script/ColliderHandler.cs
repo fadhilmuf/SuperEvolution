@@ -11,19 +11,31 @@ public class ColliderHandler : MonoBehaviour
     public Canvas failedCanvas;
 
     public EnemyController enemy;
+
+    public Slider expSlider;
+    private const string ScoreKey = "PlayerScore";
+
+    void Start()
+    {
+        score = PlayerPrefs.GetFloat(ScoreKey, 0f);
+    }
     
     void Update()
     {
         //Evolution Score
         EvoScore.text = score.ToString();
         HighScore.text = score.ToString();
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            score++;
-        }
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-                    transform.localScale *= 1.01f;
+            score++;
+            expSlider.value++;
+        }
+        if (expSlider.value == expSlider.maxValue)
+        {
+            transform.localScale *= 1.1f;
+            expSlider.maxValue *= 1.5f;
+            expSlider.value = 0;
         }
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object
@@ -35,11 +47,8 @@ public class ColliderHandler : MonoBehaviour
             case "Point":
                 Destroy(point);
                 score++;
+                expSlider.value++;
                 Debug.Log(score);
-                if (score < 210f)
-                {
-                    transform.localScale *= 1.01f;
-                }
             break;
             case "Speed":
                 movement.speed *= 1.2f;
@@ -62,5 +71,11 @@ public class ColliderHandler : MonoBehaviour
                 }
             break;
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat(ScoreKey, score);
+        PlayerPrefs.Save();
     }
 }
