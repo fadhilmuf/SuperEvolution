@@ -1,14 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ColliderHandler : MonoBehaviour
 {
+    //coin
     public float coin;
     public ParticleSystem coinParticle;
+    public Text coinText;
+
+    //score
     public float score;
+    public float level;
     public Text EvoScore;
     public Text HighScore;
-    public Text coinText;
+    public TextMeshProUGUI LevelText;
+
     public Movement movement;
 
     public Canvas failedCanvas;
@@ -29,6 +36,7 @@ public class ColliderHandler : MonoBehaviour
         coinText.text = coin.ToString();
         EvoScore.text = score.ToString();
         HighScore.text = score.ToString();
+        LevelText.text = level.ToString();
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -40,6 +48,7 @@ public class ColliderHandler : MonoBehaviour
             transform.localScale *= 1.1f;
             expSlider.maxValue *= 1.5f;
             expSlider.value = 0;
+            level++;
         }
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object

@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
     public NavMeshAgent agent;
+    public Light dangerLight;
 
     public Text enemyScore;
     public float scoreEnemy;
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
         
         if ((scoreEnemy > coll.score)&&(Player != null))
         {
+            dangerLight.intensity = 0.1f;
             audioSource.Play();
             GetComponent<MeshRenderer>().material.color = Color.red;
             GameObject nearestObject = playerObjects[0];
@@ -58,6 +60,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            dangerLight.intensity = 1f;
             audioSource.Stop();
             GetComponent<MeshRenderer>().material.color = Color.white;
             GameObject nearestObject = pointObjects[0];
