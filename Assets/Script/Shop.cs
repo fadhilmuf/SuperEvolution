@@ -3,8 +3,11 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    public ColliderHandler coll;
     public Canvas shopCanvas;
     public Button openButton;
+    public Button lifeButton;
+    public Button speefButton;
 
     void Start()
     {
@@ -15,5 +18,13 @@ public class Shop : MonoBehaviour
     void shopOpen()
     {
         shopCanvas.enabled = true;
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            shopCanvas.enabled = true;
+        }
     }
 }

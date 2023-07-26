@@ -7,22 +7,16 @@ public class EnemyController : MonoBehaviour
     public ColliderHandler coll;
     public NavMeshAgent agent;
     public Light dangerLight;
-
-    public Text enemyScore;
     public float scoreEnemy;
 
     public GameObject Player;
 
-    AudioSource audioSource;
-
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
     }
     void Update()
-    {
-        enemyScore.text = scoreEnemy.ToString();
-        
+    {   
         FindNearestPointObject();
         if(Input.GetKey(KeyCode.Space))
         {
@@ -36,10 +30,9 @@ public class EnemyController : MonoBehaviour
         GameObject[] speedObjects = GameObject.FindGameObjectsWithTag("Speed");
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         
-        if ((scoreEnemy > coll.score)&&(Player != null))
+        if ((coll.sumScore < 0)&&(Player != null))
         {
             dangerLight.intensity = 0.1f;
-            audioSource.Play();
             GetComponent<MeshRenderer>().material.color = Color.red;
             GameObject nearestObject = playerObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);
@@ -61,7 +54,6 @@ public class EnemyController : MonoBehaviour
         else
         {
             dangerLight.intensity = 1f;
-            audioSource.Stop();
             GetComponent<MeshRenderer>().material.color = Color.white;
             GameObject nearestObject = pointObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);

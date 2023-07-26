@@ -5,16 +5,19 @@ using TMPro;
 public class ColliderHandler : MonoBehaviour
 {
     //coin
-    public float coin;
-    public ParticleSystem coinParticle;
+    public int coin;
     public Text coinText;
 
     //score
     public float score;
+    public float sumScore;
     public float level;
     public Text EvoScore;
     public Text HighScore;
     public TextMeshProUGUI LevelText;
+
+    public float life;
+    public Text lifetext;
 
     public Movement movement;
 
@@ -27,14 +30,24 @@ public class ColliderHandler : MonoBehaviour
 
     void Start()
     {
-        coin = PlayerPrefs.GetFloat(CoinKey, 0f);
+        coin = PlayerPrefs.GetInt(CoinKey, 0);
     }
     
     void Update()
     {
+        if(life == 0)
+        {
+            Destroy(gameObject);
+            failedCanvas.enabled = true;
+        }
+        lifetext.text = life.ToString();
+        
+        Debug.Log(score - enemy.scoreEnemy);
+        sumScore = score - enemy.scoreEnemy;
+        EvoScore.text = sumScore.ToString();
+
         //Evolution Score
         coinText.text = coin.ToString();
-        EvoScore.text = score.ToString();
         HighScore.text = score.ToString();
         LevelText.text = level.ToString();
 
@@ -83,8 +96,8 @@ public class ColliderHandler : MonoBehaviour
             case "Enemy":
                 if(score<enemy.scoreEnemy)
                 {
-                    Destroy(gameObject);
-                    failedCanvas.enabled = true;
+                    life--;
+                    score = enemy.scoreEnemy;
                 }
             break;
         }
@@ -92,7 +105,7 @@ public class ColliderHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat(CoinKey, coin);
+        PlayerPrefs.SetInt(CoinKey, coin);
         PlayerPrefs.Save();
     }
 }
