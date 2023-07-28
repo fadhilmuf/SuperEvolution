@@ -5,16 +5,15 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
+
     public NavMeshAgent agent;
     public Light dangerLight;
+
     public float scoreEnemy;
+    public float EnemyStop = 1f;
 
     public GameObject Player;
 
-    void Start()
-    {
-        
-    }
     void Update()
     {   
         FindNearestPointObject();
@@ -49,7 +48,7 @@ public class EnemyController : MonoBehaviour
             }
 
             agent.SetDestination(nearestObject.transform.position);
-            agent.speed = 6f; // Set the agent's speed to make it run
+            agent.speed = 6f * EnemyStop; // Set the agent's speed to make it run
         }
         else
         {
@@ -70,7 +69,7 @@ public class EnemyController : MonoBehaviour
             }
 
             agent.SetDestination(nearestObject.transform.position);
-            agent.speed = 2f; // Set the agent's speed to make it run
+            agent.speed = 2f * EnemyStop; // Set the agent's speed to make it run
         }
     }
 

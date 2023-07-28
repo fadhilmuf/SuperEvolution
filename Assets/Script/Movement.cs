@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 3f;
     
     void Update()
     {

@@ -5,6 +5,8 @@ public class ShopClosed : MonoBehaviour
 {
     public Canvas shopCanvas;
     public Button closedButton;
+    public PlayerControllerExample player;
+    public EnemyController enemy;
 
     void Start()
     {
@@ -14,6 +16,8 @@ public class ShopClosed : MonoBehaviour
 
     void shopClosed()
     {
+        player.playerStop = 1f;
+        enemy.EnemyStop = 1f;
         shopCanvas.enabled = false;
     }
 }

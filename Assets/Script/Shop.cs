@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public ColliderHandler coll;
+    public PlayerControllerExample player;
+    public EnemyController enemy;
     public Canvas shopCanvas;
     public Button openButton;
-    public Button lifeButton;
-    public Button speefButton;
+
 
     void Start()
     {
@@ -17,6 +17,8 @@ public class Shop : MonoBehaviour
 
     void shopOpen()
     {
+        player.playerStop = 0f;
+        enemy.EnemyStop = 0f;
         shopCanvas.enabled = true;
     }
 
