@@ -25,16 +25,6 @@ public class ChangePlayer : MonoBehaviour
         originalMesh = meshFilter.sharedMesh;
     }
 
-    void Update()
-    {
-        if(coll.level == 1 && EvoCard != true)
-        {
-            EvoCard.enabled = true;
-            playerControl.playerStop = 0;
-            enemy.EnemyStop = 0;
-        }
-    }
-
     private void Change()
     {
         if(newMesh != null)

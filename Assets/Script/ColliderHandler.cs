@@ -39,9 +39,7 @@ public class ColliderHandler : MonoBehaviour
     }
     
     void Update()
-    {   
-        SpeedText.text = player.playerSpeed.ToString();
-        
+    {           
         if(life == 0)
         {
             Destroy(gameObject);
