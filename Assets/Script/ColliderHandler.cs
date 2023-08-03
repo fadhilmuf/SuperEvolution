@@ -4,7 +4,6 @@ using TMPro;
 
 public class ColliderHandler : MonoBehaviour
 {
-    public ParticleSystem runParticle;
     //coin
     public int coin;
     public Text coinText;
@@ -16,18 +15,20 @@ public class ColliderHandler : MonoBehaviour
     public Text EvoScore;
     public Text HighScore;
     public TextMeshProUGUI LevelText;
-    public Text SpeedtText;
+    //Speed
+    public Text SpeedText;
 
+    //life
     public float life;
     public Text lifetext;
 
-    public Movement movement;
+    private Movement movement;
 
     public Canvas failedCanvas;
     public Canvas EvoCard;
 
     public EnemyController enemy;
-    public PlayerControllerExample player;
+    private PlayerControllerExample player;
 
     public Slider expSlider;
     private const string CoinKey = "Coins";
@@ -38,10 +39,8 @@ public class ColliderHandler : MonoBehaviour
     }
     
     void Update()
-    {
-        runParticle.Play();
-        
-        SpeedtText.text = player.playerSpeed.ToString();
+    {   
+        SpeedText.text = player.playerSpeed.ToString();
         
         if(life == 0)
         {
