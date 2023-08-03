@@ -6,7 +6,7 @@ public class Shop : MonoBehaviour
     public PlayerControllerExample player;
     public EnemyController enemy;
     public Canvas shopCanvas;
-    public Button openButton;
+    private Button openButton;
 
 
     void Start()

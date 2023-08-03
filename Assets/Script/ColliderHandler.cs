@@ -4,6 +4,7 @@ using TMPro;
 
 public class ColliderHandler : MonoBehaviour
 {
+    public ParticleSystem runParticle;
     //coin
     public int coin;
     public Text coinText;
@@ -15,6 +16,7 @@ public class ColliderHandler : MonoBehaviour
     public Text EvoScore;
     public Text HighScore;
     public TextMeshProUGUI LevelText;
+    public Text SpeedtText;
 
     public float life;
     public Text lifetext;
@@ -37,6 +39,10 @@ public class ColliderHandler : MonoBehaviour
     
     void Update()
     {
+        runParticle.Play();
+        
+        SpeedtText.text = player.playerSpeed.ToString();
+        
         if(life == 0)
         {
             Destroy(gameObject);

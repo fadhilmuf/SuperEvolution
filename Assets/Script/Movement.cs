@@ -8,15 +8,15 @@ public class Movement : MonoBehaviour
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Jump");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(x,0,z);
-        if (movement.magnitude > 1f)
+        Vector3 movement = new Vector3(x,y,z);
+        if (movement.magnitude > 1f)    
         {
             movement.Normalize();
         }
 
         transform.Translate(movement * speed * Time.deltaTime);
     }
-
 }
