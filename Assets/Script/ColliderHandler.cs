@@ -22,8 +22,10 @@ public class ColliderHandler : MonoBehaviour
     public Movement movement;
 
     public Canvas failedCanvas;
+    public Canvas EvoCard;
 
     public EnemyController enemy;
+    public PlayerControllerExample player;
 
     public Slider expSlider;
     private const string CoinKey = "Coins";

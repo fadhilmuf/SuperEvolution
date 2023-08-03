@@ -1,33 +1,52 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangePlayer : MonoBehaviour
 {
     public Mesh newMesh;
-    
-    private MeshFilter meshFilter;
     private Mesh originalMesh;
+    private Button changeButton;
+    public GameObject player;
+    private MeshFilter meshFilter;
+    public ColliderHandler coll;
+    public Canvas EvoCard;
+
+    //Run the time again
+    public PlayerControllerExample playerControl;
+    public EnemyController enemy;
 
     void Start()
     {
-        meshFilter = GetComponent<MeshFilter>();
+        changeButton = GetComponent<Button>();
+        changeButton.onClick.AddListener(Change);
+        
+        meshFilter = player.GetComponent<MeshFilter>();
 
         originalMesh = meshFilter.sharedMesh;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(coll.level == 1 && EvoCard != true)
         {
-            if(newMesh != null)
-            {
-                meshFilter.sharedMesh = newMesh;
-            }
+            EvoCard.enabled = true;
+            playerControl.playerStop = 0;
+            enemy.EnemyStop = 0;
         }
     }
 
-    private void OnDisable()
+    private void Change()
     {
-        meshFilter.sharedMesh = originalMesh;
+        if(newMesh != null)
+            {
+                meshFilter.sharedMesh = newMesh;
+            }
+        if(EvoCard == true)
+        {
+            EvoCard.enabled = false;
+            playerControl.playerStop = 1f;
+            enemy.EnemyStop = 1f;
+        }
     }
 
 }

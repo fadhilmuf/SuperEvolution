@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Speed : MonoBehaviour
 {
     public ColliderHandler coll;
-    public Movement move;
+    public PlayerControllerExample player;
     public Button speedButton;
 
     void Start()
@@ -18,7 +18,7 @@ public class Speed : MonoBehaviour
         if(coll.coin >= 2)
         {
             coll.coin -= 2;
-            move.speed += 1;
+            player.playerSpeed += 1;
         }
     }
 }
