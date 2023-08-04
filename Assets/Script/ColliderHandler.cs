@@ -6,21 +6,14 @@ public class ColliderHandler : MonoBehaviour
 {
     //coin
     public int coin;
-    public Text coinText;
 
     //score
     public float score;
     public float sumScore;
     public float level;
-    public Text EvoScore;
-    public Text HighScore;
-    public TextMeshProUGUI LevelText;
-    //Speed
-    public Text SpeedText;
 
     //life
     public float life = 2;
-    public Text lifetext;
 
     private Movement movement;
 
@@ -30,7 +23,7 @@ public class ColliderHandler : MonoBehaviour
     public EnemyController enemy;
     private PlayerControllerExample player;
 
-    public Slider expSlider;
+    
     private const string CoinKey = "Coins";
 
     void Start()
@@ -40,35 +33,7 @@ public class ColliderHandler : MonoBehaviour
     
     void Update()
     {           
-        SpeedText.text = player.playerSpeed.ToString();
-        if(life == 0)
-        {
-            Destroy(gameObject);
-            failedCanvas.enabled = true;
-        }
-        lifetext.text = life.ToString();
         
-        Debug.Log(score - enemy.scoreEnemy);
-        sumScore = score - enemy.scoreEnemy;
-        EvoScore.text = sumScore.ToString();
-
-        //Evolution Score
-        coinText.text = coin.ToString();
-        HighScore.text = score.ToString();
-        LevelText.text = level.ToString();
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            score++;
-            expSlider.value++;
-        }
-        if (expSlider.value == expSlider.maxValue)
-        {
-            transform.localScale *= 1.1f;
-            expSlider.maxValue *= 1.5f;
-            expSlider.value = 0;
-            level++;
-        }
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object
     {

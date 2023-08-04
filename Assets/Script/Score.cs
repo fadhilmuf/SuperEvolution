@@ -1,18 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ColliderHandler colliderHandler;
+    
+    public Text coinText;
+    public Text highScoreText;
+    public TextMeshProUGUI lifetext;
+    public TextMeshProUGUI levelText;
 
-    // Update is called once per frame
+    public Slider expSlider;
+
+    public Canvas failedCanvas;
+
     void Update()
     {
+        coinText.text = colliderHandler.coin.ToString();
         
+        if(colliderHandler.life == 0)
+        {
+            Destroy(gameObject);
+            failedCanvas.enabled = true;
+        }
+        lifetext.text = colliderHandler.life.ToString();
+
+        highScoreText.text = colliderHandler.score.ToString();
+        levelText.text = colliderHandler.level.ToString();
+
+        if (expSlider.value == expSlider.maxValue)
+        {
+            expSlider.maxValue *= 1.5f;
+            expSlider.value = 0;
+            colliderHandler.level++;
+        }
     }
 }
