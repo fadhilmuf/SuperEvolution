@@ -19,7 +19,7 @@ public class ColliderHandler : MonoBehaviour
     public Text SpeedText;
 
     //life
-    public float life;
+    public float life = 2;
     public Text lifetext;
 
     private Movement movement;
@@ -40,6 +40,7 @@ public class ColliderHandler : MonoBehaviour
     
     void Update()
     {           
+        SpeedText.text = player.playerSpeed.ToString();
         if(life == 0)
         {
             Destroy(gameObject);
