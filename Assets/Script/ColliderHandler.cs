@@ -16,9 +16,6 @@ public class ColliderHandler : MonoBehaviour
     //life
     public float life = 2;
 
-    public Canvas failedCanvas;
-    public Canvas EvoCard;
-
     public EnemyController enemy;
     public Score sc;
     public PlayerControllerExample player;
@@ -72,7 +69,6 @@ public class ColliderHandler : MonoBehaviour
                 if(level>enemy.enemyLevel)
                 {
                     Destroy(enem);
-
                 }
             break;
         }
