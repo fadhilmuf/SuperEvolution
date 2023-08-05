@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ColliderHandler : MonoBehaviour
 {
+    //Timer
+    public float timer;
     //coin
     public int coin;
 
@@ -15,14 +16,12 @@ public class ColliderHandler : MonoBehaviour
     //life
     public float life = 2;
 
-    private Movement movement;
-
     public Canvas failedCanvas;
     public Canvas EvoCard;
 
     public EnemyController enemy;
-    private PlayerControllerExample player;
-
+    public Score sc;
+    public PlayerControllerExample player;
     
     private const string CoinKey = "Coins";
 
@@ -33,7 +32,13 @@ public class ColliderHandler : MonoBehaviour
     
     void Update()
     {           
-        
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(timer);
+        }
+
+        sumScore = score - enemy.scoreEnemy;
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object
     {
@@ -44,13 +49,7 @@ public class ColliderHandler : MonoBehaviour
             case "Point":
                 Destroy(point);
                 score++;
-                expSlider.value++;
-                Debug.Log(score);
-            break;
-            case "Speed":
-                movement.speed *= 1.2f;
-                Destroy(point);
-                Debug.Log(movement.speed);
+                sc.expSlider.value++;
             break;
             case "Coin":
                 coin++;
@@ -68,7 +67,12 @@ public class ColliderHandler : MonoBehaviour
                 if(score<enemy.scoreEnemy)
                 {
                     life--;
-                    score = enemy.scoreEnemy;
+                    timer = 3f;
+                }
+                if(level>enemy.enemyLevel)
+                {
+                    Destroy(enem);
+
                 }
             break;
         }

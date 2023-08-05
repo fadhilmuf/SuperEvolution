@@ -8,6 +8,7 @@ public class Score : MonoBehaviour
     
     public Text coinText;
     public Text highScoreText;
+    public Text highScoreSuccesText;
     public TextMeshProUGUI lifetext;
     public TextMeshProUGUI levelText;
 
@@ -27,6 +28,7 @@ public class Score : MonoBehaviour
         lifetext.text = colliderHandler.life.ToString();
 
         highScoreText.text = colliderHandler.score.ToString();
+        highScoreSuccesText.text = colliderHandler.score.ToString();
         levelText.text = colliderHandler.level.ToString();
 
         if (expSlider.value == expSlider.maxValue)

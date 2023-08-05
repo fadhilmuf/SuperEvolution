@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class JellyMesh : MonoBehaviour
 {
-    public float jellyStrength = 0.1f;
-    public float jellyDamping = 0.1f;
-    public float jellyFrequency = 1f;
+    public Detector detector;
+    
+    private float jellyStrength = 1f;
+    public float jellyDamping = 0.2f;
+    private float jellyFrequency = 3f;
     
     private Vector3[] originalVertices;
     
@@ -19,6 +21,10 @@ public class JellyMesh : MonoBehaviour
     
     private void Update()
     {
+        if(detector.detectPlayer == true)
+        {
+            jellyFrequency = 7f;
+        }
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         if (meshFilter != null)
         {

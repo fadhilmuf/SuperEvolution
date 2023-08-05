@@ -1,18 +1,26 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro; 
 
 public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
+    public Detector detector;
 
     public NavMeshAgent agent;
     public Light dangerLight;
 
     public float scoreEnemy;
     public float EnemyStop = 1f;
+    public float enemyLevel; 
+
+    public Slider enemySlider;
 
     public GameObject Player;
+    public GameObject detectorObject;
+
+    public TextMeshProUGUI enemyLevelText;
 
     void Update()
     {   
@@ -21,15 +29,26 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log(agent.speed);
         }
+        if(enemySlider.value == enemySlider.maxValue)
+        {
+            enemySlider.value = 0f;
+            enemySlider.maxValue *= 1.2f;
+            enemyLevel++;
+            if (scoreEnemy < 210f)
+                {
+                    transform.localScale *= 1.01f;
+                    detectorObject.transform.localScale *= 1.01f;
+                }
+        }
+        enemyLevelText.text = enemyLevel.ToString();
     }
 
     void FindNearestPointObject()
     {
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("Point");
-        GameObject[] speedObjects = GameObject.FindGameObjectsWithTag("Speed");
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         
-        if ((coll.sumScore < 0)&&(Player != null))
+        if ((coll.sumScore < 0)&&(Player != null)&&(detector.detectPlayer == true)&&(coll.timer < 1f))
         {
             dangerLight.intensity = 0.1f;
             GetComponent<MeshRenderer>().material.color = Color.red;
@@ -82,11 +101,7 @@ public class EnemyController : MonoBehaviour
             case "Point":
                 Destroy(point);
                 scoreEnemy++;
-                Debug.Log(scoreEnemy);
-                if (scoreEnemy < 210f)
-                {
-                    transform.localScale *= 1.01f;
-                }
+                enemySlider.value++;
             break;
             case "Speed":
                 Destroy(point);
