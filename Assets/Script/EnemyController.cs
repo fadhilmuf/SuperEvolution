@@ -6,7 +6,6 @@ using TMPro;
 public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
-    public Detector detector;
 
     public NavMeshAgent agent;
     public Light dangerLight;
@@ -18,7 +17,6 @@ public class EnemyController : MonoBehaviour
     public Slider enemySlider;
 
     public GameObject Player;
-    public GameObject detectorObject;
 
     public TextMeshProUGUI enemyLevelText;
 
@@ -32,12 +30,11 @@ public class EnemyController : MonoBehaviour
         if(enemySlider.value == enemySlider.maxValue)
         {
             enemySlider.value = 0f;
-            enemySlider.maxValue *= 1.2f;
+            enemySlider.maxValue *= 1.5f;
             enemyLevel++;
             if (scoreEnemy < 210f)
                 {
                     transform.localScale *= 1.01f;
-                    detectorObject.transform.localScale *= 1.01f;
                 }
         }
         enemyLevelText.text = enemyLevel.ToString();
@@ -48,7 +45,7 @@ public class EnemyController : MonoBehaviour
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("Point");
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         
-        if ((coll.sumScore < 0)&&(Player != null)&&(detector.detectPlayer == true)&&(coll.timer < 1f))
+        if ((coll.sumScore < 0)&&(Player != null)&&(coll.timer < 1f))
         {
             dangerLight.intensity = 0.1f;
             GetComponent<MeshRenderer>().material.color = Color.red;

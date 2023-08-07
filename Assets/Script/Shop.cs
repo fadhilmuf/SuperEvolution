@@ -6,20 +6,27 @@ public class Shop : MonoBehaviour
     public PlayerControllerExample player;
     public EnemyController enemy;
     public Canvas shopCanvas;
-    private Button openButton;
+    public Button openButton, closedButton, coinButton;
 
 
     void Start()
     {
-        openButton = GetComponent<Button>();
-        openButton.onClick.AddListener(shopOpen);
+        openButton.onClick.AddListener(ShopOpen);
+        closedButton.onClick.AddListener(ShopClosed);
+        coinButton.onClick.AddListener(ShopOpen);
     }
 
-    void shopOpen()
+    void ShopOpen()
     {
         player.playerStop = 0f;
         enemy.EnemyStop = 0f;
         shopCanvas.enabled = true;
+    }
+    void ShopClosed()
+    {
+        player.playerStop = 1f;
+        enemy.EnemyStop = 1f;
+        shopCanvas.enabled = false;
     }
 
     void Update()

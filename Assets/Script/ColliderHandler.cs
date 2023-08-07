@@ -1,20 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ColliderHandler : MonoBehaviour
 {
-    //Timer
-    public float timer;
-    //coin
     public int coin;
-
-    //score
-    public float score;
-    public float sumScore;
-    public float level;
-
-    //life
-    public float life = 2;
+    public float score, sumScore, level, timer, life = 2;
 
     public EnemyController enemy;
     public Score sc;
