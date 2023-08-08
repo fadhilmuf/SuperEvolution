@@ -5,8 +5,8 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject evo, coin;
     public Terrain terrain;
-    private int evospawn = 2, coinspawn = 50;
-    private float respawnTime = 5f;
+    private int evospawn = 1000, coinspawn = 50;
+    private float respawnTime = 30f;
 
     float heightY = 0.2f;
 

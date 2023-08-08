@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         
         if ((coll.sumScore < 0)&&(Player != null)&&(coll.timer < 1f))
         {
-            dangerLight.intensity = 0.1f;
+            dangerLight.color = Color.gray;
             GetComponent<MeshRenderer>().material.color = Color.red;
             GameObject nearestObject = playerObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);
@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            dangerLight.intensity = 1f;
+            dangerLight.color = Color.white;
             GetComponent<MeshRenderer>().material.color = Color.white;
             GameObject nearestObject = pointObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);

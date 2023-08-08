@@ -21,7 +21,6 @@ public class ColliderHandler : MonoBehaviour
         if(timer > 0)
         {
             timer -= Time.deltaTime;
-            Debug.Log(timer);
         }
 
         sumScore = score - enemy.scoreEnemy;
