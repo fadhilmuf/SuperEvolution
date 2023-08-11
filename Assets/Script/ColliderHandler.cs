@@ -3,11 +3,12 @@ using UnityEngine;
 public class ColliderHandler : MonoBehaviour
 {
     public int coin;
-    public float score, sumScore, level, timer, life = 2;
+    public float score, level, timer, life = 2;
 
     public EnemyController enemy;
     public Score sc;
     public PlayerControllerExample player;
+    public ObjectSpawner objectSpawner;
     
     private const string CoinKey = "Coins";
 
@@ -22,8 +23,12 @@ public class ColliderHandler : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-
-        sumScore = score - enemy.scoreEnemy;
+        //Cheat key
+        if(Input.GetMouseButtonDown(0))
+        {
+            score++;
+            sc.expSlider.value++;
+        }
     }
     void OnTriggerEnter(Collider other) //when object collide to trigger object
     {
@@ -54,9 +59,10 @@ public class ColliderHandler : MonoBehaviour
                     life--;
                     timer = 3f;
                 }
-                if(level>enemy.enemyLevel)
+                else if(score>enemy.scoreEnemy)
                 {
                     Destroy(enem);
+                    objectSpawner.enemydecrease++;
                 }
             break;
         }

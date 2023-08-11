@@ -6,19 +6,19 @@ using TMPro;
 public class EnemyController : MonoBehaviour
 {
     public ColliderHandler coll;
+    public Detector detector;
+    public ObjectSpawner objectSpawner;
 
     public NavMeshAgent agent;
     public Light dangerLight;
 
-    public float scoreEnemy;
-    public float EnemyStop = 1f;
-    public float enemyLevel; 
+    public float scoreEnemy, enemyLevel, EnemyStop = 1f;
 
     public Slider enemySlider;
 
     public GameObject Player;
 
-    public TextMeshProUGUI enemyLevelText;
+    public TextMeshProUGUI enemyLevelText, enemylefttext;
 
     void Update()
     {   
@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("Point");
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         
-        if ((coll.sumScore < 0)&&(Player != null)&&(coll.timer < 1f))
+        if ((scoreEnemy>coll.score)&&(Player != null)&&(coll.timer < 1f)&&(detector.detectPlayer == true))
         {
             dangerLight.color = Color.gray;
             GetComponent<MeshRenderer>().material.color = Color.red;
@@ -69,7 +69,14 @@ public class EnemyController : MonoBehaviour
         else
         {
             dangerLight.color = Color.white;
-            GetComponent<MeshRenderer>().material.color = Color.white;
+            if (scoreEnemy<coll.score)
+            {
+                GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+            else
+            {
+                GetComponent<MeshRenderer>().material.color = Color.white;
+            }
             GameObject nearestObject = pointObjects[0];
             float nearestDistance = Vector3.Distance(transform.position, nearestObject.transform.position);
 
